@@ -36,17 +36,19 @@ From the repository root, start JupyterLab:
 jupyter lab ipynb/
 ```
 
-Open a notebook, select the xeus-cpp **C++17** kernel, then restart the kernel and run all cells. The saved notebooks use the custom kernel name `black-scholes-cpp`; select the installed C++17 kernel if that name is unavailable. The kernel's working directory must be `ipynb/` so relative include and output paths resolve correctly.
+Start with [Numerical Method and Experiment Setup](ipynb/00_Numerical_method_and_experiment_setup.ipynb), then continue to Test 1 and Test 2. Select the xeus-cpp **C++17** kernel, then restart the kernel and run all cells. The saved notebooks use the custom kernel name `black-scholes-cpp`; select the installed C++17 kernel if that name is unavailable. The kernel's working directory must be `ipynb/` so relative include and output paths resolve correctly.
 
 For VS Code, open the project in WSL and select the C++17 kernel. Restart the kernel and rerun all cells after changing C++ definitions.
 
 ## Notebooks
 
-| Notebook | Description |
-|---|---|
-| [Test 1](ipynb/5_1_Test_1_Figure_1_Table_1.ipynb) | Space- and time-dependent volatility; reproduces Figure 1 and Table 1 |
-| [Test 2](ipynb/5_2_Test_2_Figure_2_Table_2.ipynb) | Space-dependent volatility; reproduces Figure 2 and Table 2 |
-| [Numerical Method and Experiment Setup](ipynb/Numerical_method_and_experiment_setup.ipynb) | Notation, payoff smoothing, mesh construction, discretization, solver, and error definitions |
+Read the notebooks in the following order:
+
+| Order | Notebook | Description |
+|---:|---|---|
+| 1 | [Numerical Method and Experiment Setup](ipynb/00_Numerical_method_and_experiment_setup.ipynb) | Start here: notation, payoff smoothing, mesh construction, discretization, solver, and error definitions |
+| 2 | [Test 1](ipynb/5_1_Test_1_Figure_1_Table_1.ipynb) | Space- and time-dependent volatility; reproduces Figure 1 and Table 1 |
+| 3 | [Test 2](ipynb/5_2_Test_2_Figure_2_Table_2.ipynb) | Space-dependent volatility; reproduces Figure 2 and Table 2 |
 
 Each notebook runs independently and includes saved execution outputs and figures. Notebook explanations are currently written in Korean.
 
