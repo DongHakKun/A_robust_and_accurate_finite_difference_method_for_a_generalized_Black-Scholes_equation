@@ -91,10 +91,10 @@ The reference solution is numerical, so these values do not measure total error 
 | [include/TridiagonalSolver.h](include/TridiagonalSolver.h) | Thomas algorithm with reusable work arrays |
 | [include/ErrorAnalysis.h](include/ErrorAnalysis.h) | Interpolation, maximum error, and constant-volatility exact-solution checks |
 | [include/ExperimentOutput.h](include/ExperimentOutput.h) | CSV export and gnuplot output |
-| [include/NotebookDisplay.h](include/NotebookDisplay.h) | Inline SVG display in xeus-cpp |
+| [include/NotebookDisplay.h](include/NotebookDisplay.h) | Inline PNG display in xeus-cpp |
 | [environment.yml](environment.yml) | Conda environment definition |
 
-Running the notebooks creates `results/` automatically. It contains error and time-slice CSV files, SVG and PNG figures, and intermediate `.dat` and `.gp` files. Generated results are excluded from Git; saved outputs and figures remain available inside the notebooks.
+Running the notebooks creates `results/` automatically. It contains error and time-slice CSV files, SVG and PNG figures, and intermediate `.dat` and `.gp` files. Generated results are excluded from Git; figures are embedded as PNG images inside the notebooks for static rendering on GitHub. SVG versions are also generated locally.
 
 ## Validation
 
