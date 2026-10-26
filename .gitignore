@@ -5,3 +5,4 @@ build/
 results/
 docs/
 .archive
+error_analysis/
