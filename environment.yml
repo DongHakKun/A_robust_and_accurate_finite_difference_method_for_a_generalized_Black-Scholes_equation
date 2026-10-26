@@ -1,0 +1,13 @@
+name: black-scholes-cpp
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - xeus-cpp=0.10.0
+  - cppinterop=1.9.0
+  - clang=21.1.8
+  - clangxx=21.1.8
+  - jupyterlab
+  - nbclient
+  - nbformat
+  - gnuplot
