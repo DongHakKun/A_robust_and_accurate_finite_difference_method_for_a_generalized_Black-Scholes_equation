@@ -93,8 +93,7 @@ class ErrorAnalysis
             return x * Phi1 - K * exp(-r * time) * Phi2;
         }
 
-        // This compares with the original, unsmoothed infinite-domain formula.
-        // It therefore includes smoothing and domain truncation biases.
+        // Compare with the unsmoothed, infinite-domain Black-Scholes call formula.
         static double maxConstantError(const BlackScholesSolver& solution, int j = 0)
         {
             assert(j >= 0 && j <= solution.M);

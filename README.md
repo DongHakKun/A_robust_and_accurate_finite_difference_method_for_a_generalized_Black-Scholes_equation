@@ -2,7 +2,7 @@
 
 An **unofficial C++17 implementation** reproducing the numerical experiments in [Cen and Le (2011)](https://doi.org/10.1016/j.cam.2011.01.018), *A robust and accurate finite difference method for a generalized Black–Scholes equation*.
 
-The project reproduces Tests 1 and 2 from Section 5, including Figures 1–2 and Tables 1–2, through Jupyter notebooks using the xeus-cpp kernel. This is an independent reproduction, not the authors' official code.
+The project reproduces Tests 1 and 2 from Section 5, including Figures 1–2 and Tables 1–2, through Jupyter notebooks using the xeus-cpp kernel.
 
 ## Overview
 
@@ -67,7 +67,7 @@ Here, `alpha` bounds `sigma^2` from below and `betaStar` bounds the interest rat
 - **Tables 1–2:** `M = 1024`, with `N = 128, 256, 512, 1024`.
 - **Reference solution:** `N = 2048`, `M = 1024`.
 
-The reference solution is interpolated linearly in space at matching time levels. Errors are measured over **all spatial nodes and time levels**, rather than only at `t = 0`. Spatial meshes are not assumed to be nested.
+The reference solution is interpolated linearly in space at matching time levels. Errors are measured over **all spatial nodes and time levels**. A spatial mesh is generated for each value of `N`.
 
 ### Results
 
@@ -79,8 +79,6 @@ The reference solution is interpolated linearly in space at matching time levels
 | 1024 | 3.41885173e-3 | — | 1.05863181e-3 | — |
 
 All eight error values and six convergence rates match the printed precision of Tables 1–2. Each rate compares the current row with the next, using `log2(error(N) / error(2N))`.
-
-The reference solution is numerical, so these values do not measure total error against an exact solution. Since the time grid is fixed, the tables also do not establish a temporal convergence rate. The notebooks discuss local truncation error at mesh transition points and the limits of interpreting observed rates.
 
 ## Project Structure
 
@@ -99,8 +97,6 @@ Running the notebooks creates `results/` automatically. It contains error and ti
 ## Validation
 
 Numerical checks cover the Thomas solver, mesh landmarks, payoff smoothing, boundary conditions, time direction, residuals, interior M-matrix properties, interpolation between nonnested meshes, and maximum errors over all time levels. They also verify the published tables and error reduction against the constant-volatility Black–Scholes exact solution.
-
-All three notebooks have been executed successfully with the C++17 kernel using only the published source files, regenerating all 30 result files without local reference materials or development archives.
 
 ## Reference
 
