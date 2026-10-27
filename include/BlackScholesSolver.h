@@ -17,7 +17,7 @@ class BlackScholesSolver
         double K;
         double Smax;
         double tau;
-        double baseH; // h in the paper's piecewise mesh formula
+        double baseH; // paper mesh parameter h; first gap for the resolved mesh
         double r;
         double sigmaConstant;
 
@@ -117,6 +117,44 @@ class BlackScholesSolver
             x[N] = Smax;
             h[0] = 0.0;
             for(int i = 1; i <= N; i++) h[i] = x[i] - x[i - 1];
+        }
+
+        // All three regions refine with their interval counts. The transition
+        // half-width is independent of epsilon, which remains the payoff width.
+        void generateResolvedPiecewiseMesh(double transitionHalfWidth,
+                                           int leftIntervals, int transitionIntervals)
+        {
+            assert(transitionHalfWidth > 0.0 && transitionHalfWidth < K);
+            assert(K + transitionHalfWidth < Smax);
+            assert(leftIntervals > 0 && leftIntervals < N);
+            assert(transitionIntervals > 0 && transitionIntervals < N - leftIntervals);
+            assert(transitionIntervals % 2 == 0);
+
+            int rightIntervals = N - leftIntervals - transitionIntervals;
+            double leftEnd = K - transitionHalfWidth;
+            double rightStart = K + transitionHalfWidth;
+            for(int i = 0; i <= leftIntervals; i++)
+                x[i] = leftEnd * i / leftIntervals;
+            x[leftIntervals] = leftEnd;
+            for(int i = 1; i <= transitionIntervals; i++)
+                x[leftIntervals + i] = leftEnd
+                    + 2.0 * transitionHalfWidth * i / transitionIntervals;
+            x[leftIntervals + transitionIntervals / 2] = K;
+            x[leftIntervals + transitionIntervals] = rightStart;
+            for(int i = 1; i <= rightIntervals; i++)
+                x[leftIntervals + transitionIntervals + i] = rightStart
+                    + (Smax - rightStart) * i / rightIntervals;
+            x[N] = Smax;
+
+            h[0] = 0.0;
+            for(int i = 1; i <= N; i++) h[i] = x[i] - x[i - 1];
+            baseH = h[1];
+        }
+
+        void generateResolvedPiecewiseMesh(double transitionHalfWidth)
+        {
+            assert(N % 16 == 0);
+            generateResolvedPiecewiseMesh(transitionHalfWidth, N / 4, N / 8);
         }
 
         double payoff(double y) const
